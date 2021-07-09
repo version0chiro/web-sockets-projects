@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>WebSockets Basics</h1>
+    <ul>
+      something .... Lorem ipsum dolor sit amet, consectet ut labore et netus et
+      malesuada fames ac
+    </ul>
+
+    <input type="text" id="textBox" />
+    <button onclick="send_message()">click me</button>
+    <script>
+      const ws = new WebSocket("ws://localhost:8082");
+
+      function send_message() {
+        message = document.getElementById("textBox").value;
+        console.log(message);
+        ws.send(message);
+      }
+      ws.addEventListener("open", () => {
+        console.log("We are connected!");
+
+        ws.send("hey how is it going?");
+      });
+
+      ws.addEventListener("message", (e) => {
+        console.log(e.data);
+      });
+    </script>
+  </body>
+</html>
